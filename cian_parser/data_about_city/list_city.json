@@ -1,0 +1,17 @@
+[
+  "https://chelyabinsk.cian.ru/cat.php?currency=2&deal_type=sale&engine_version=2&maxprice={max_price}&minprice={min_price}&offer_type=flat&p={num_site_page}&region=5048&sort=creation_date_desc",
+  "https://ekb.cian.ru/cat.php?currency=2&deal_type=sale&engine_version=2&maxprice={max_price}&minprice={min_price}&offer_type=flat&p={num_site_page}&region=4743&sort=creation_date_desc",
+  "https://kazan.cian.ru/cat.php?currency=2&deal_type=sale&engine_version=2&maxprice={max_price}&minprice={min_price}&offer_type=flat&p={num_site_page}&region=4777&sort=creation_date_desc",
+  "https://krasnodar.cian.ru/cat.php?currency=2&deal_type=sale&engine_version=2&maxprice={max_price}&minprice={min_price}&offer_type=flat&p={num_site_page}&region=4820&sort=creation_date_desc",
+  "https://krasnoyarsk.cian.ru/cat.php?currency=2&deal_type=sale&engine_version=2&maxprice={max_price}&minprice={min_price}&offer_type=flat&p={num_site_page}&region=4827&sort=creation_date_desc",
+  "https://www.cian.ru/cat.php?currency=2&deal_type=sale&engine_version=2&maxprice={max_price}&minprice={min_price}&offer_type=flat&p={num_site_page}&region=1&sort=creation_date_desc",
+  "https://nn.cian.ru/cat.php?currency=2&deal_type=sale&engine_version=2&maxprice={max_price}&minprice={min_price}&offer_type=flat&p={num_site_page}&region=4885&sort=creation_date_desc",
+  "https://novosibirsk.cian.ru/cat.php?currency=2&deal_type=sale&engine_version=2&maxprice={max_price}&minprice={min_price}&offer_type=flat&p={num_site_page}&region=4897&sort=creation_date_desc",
+  "https://omsk.cian.ru/cat.php?currency=2&deal_type=sale&engine_version=2&maxprice={max_price}&minprice={min_price}&offer_type=flat&p={num_site_page}&region=4914&sort=creation_date_desc",
+  "https://perm.cian.ru/cat.php?currency=2&deal_type=sale&engine_version=2&maxprice={max_price}&minprice={min_price}&offer_type=flat&p={num_site_page}&region=4927&sort=creation_date_desc",
+  "https://samara.cian.ru/cat.php?currency=2&deal_type=sale&engine_version=2&maxprice={max_price}&minprice={min_price}&offer_type=flat&p={num_site_page}&region=4966&sort=creation_date_desc",
+  "https://spb.cian.ru/cat.php?currency=2&deal_type=sale&engine_version=2&maxprice={max_price}&minprice={min_price}&offer_type=flat&p={num_site_page}&region=2&sort=creation_date_desc",
+  "https://ufa.cian.ru/cat.php?currency=2&deal_type=sale&engine_version=2&maxprice={max_price}&minprice={min_price}&offer_type=flat&p={num_site_page}&region=176245&sort=creation_date_desc",
+  "https://volgograd.cian.ru/cat.php?currency=2&deal_type=sale&engine_version=2&maxprice={max_price}&minprice={min_price}&offer_type=flat&p={num_site_page}&region=4704&sort=creation_date_desc",
+  "https://voronezh.cian.ru/cat.php?currency=2&deal_type=sale&engine_version=2&maxprice={max_price}&minprice={min_price}&offer_type=flat&p={num_site_page}&region=4713&sort=creation_date_desc"
+]
