@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" class="main-font">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{.title}}</title>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.12"
+      integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body hx-ext="response-targets">
+    <form
+      id="prediction-form"
+      hx-get="/prediction"
+      hx-on::config-request="event.detail.path += getPredictionQuery()"
+      hx-target="#prediction"
+      hx-on::after-request="t = event.detail.target; t.className = 'highlight'; void t.offsetWidth; t.className = 'fade-out'"
+    >
+      <ul>
+        <li>
+          <label>
+            Город (city):
+            <select id="city" required>
+              <option value="">---</option>
+              <option value="0">Казань (Kazan)</option>
+              <option value="1">Москва (Moscow)</option>
+              <option value="2">Омск (Omsk)</option>
+              <option value="3">Санкт-Петербург (St. Petersburg)</option>
+            </select>
+          </label>
+        </li>
+        <li>
+          <label>Количество комнат (room count): <input type="number" id="room_count" required /></label>
+        </li>
+        <li>
+          <label>Этаж квартиры (floor): <input type="number" id="floor" required /></label>
+        </li>
+        <li>
+          <label>Всего этажей (total floors): <input type="number" id="total_floors" required /></label>
+        </li>
+        <li>
+          <label>Общая площадь (area): <input type="text" id="area" required /></label>
+        </li>
+        <li>
+          <label>Площадь кухни (kitchen area): <input type="text" id="kitchen_area" required /></label>
+        </li>
+        <li>
+          <label>Жилая площадь (living area): <input type="text" id="living_area" required /></label>
+        </li>
+        <li>
+          <label>Высота потолка (ceiling height): <input type="text" id="ceiling_height" required /></label>
+        </li>
+        <li>
+          <label>
+            Тип ремонта (renovation type):
+            <select id="repair_type" required>
+              <option value="">---</option>
+              <option value="0">Без ремонта (without renovation)</option>
+              <option value="1">Косметический (cosmetic)</option>
+              <option value="2">Евроремонт (renovation)</option>
+              <option value="3">Дизайнерский (designer renovation)</option>
+              <option value="4">Под чистовую отделку (for fine finishing)</option>
+              <option value="5">Требует ремонта (requires renovation)</option>
+              <option value="6">Чистовая отделка (fine finishing)</option>
+              <option value="7">Под ключ (turnkey)</option>
+              <option value="8">Предчистовая отделка (pre-finishing)</option>
+              <option value="9">Стандартный ремонт (standard renovation)</option>
+            </select>
+          </label>
+        </li>
+        <li>
+          <label>Год постройки (build year): <input type="number" id="build_year" required /></label>
+        </li>
+        <li>
+          <label>
+            Тип отопления (heating type):
+            <select id="heating_type" required>
+              <option value="">---</option>
+              <option value="0">Центральное (central)</option>
+              <option value="1">Котел/Квартирное (boiler/apartment)</option>
+              <option value="2">Автономная котельная (autonomous boiler room)</option>
+              <option value="3">Индивидуальный тепловой пункт (individual heating point)</option>
+              <option value="4">Печь (oven)</option>
+              <option value="5">Электрическое (electric)</option>
+            </select>
+          </label>
+        </li>
+      </ul>
+    </form>
+    <button type="submit" form="prediction-form">Get Prediction</button>
+    <div id="loading-spinner"></div>
+    <div id="prediction"></div>
+
+    <style>
+      * {
+        margin: 0.15rem;
+        padding: 0.15rem;
+      }
+      .main-font * {
+        font-family: monospace;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1rem;
+        line-height: 1.25rem;
+        letter-spacing: 0;
+      }
+      #loading-spinner {
+        display: none;
+        margin: 0;
+        padding: 0;
+        vertical-align: middle;
+      }
+      .htmx-request ~ #loading-spinner {
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        border: 0.2rem solid #fff;
+        border-radius: 50%;
+        border-top-color: #000;
+        animation: spin 0.4s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      #prediction {
+        width: fit-content;
+      }
+      .highlight {
+        background-color: yellow;
+      }
+      .fade-out {
+        transition: background-color 0.5s;
+        background-color: inherit;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+
+    <script>
+      document.body.addEventListener("htmx:beforeOnLoad", function (event) {
+        if (event.detail.xhr.status === 422) {
+          event.detail.shouldSwap = true;
+          event.detail.isError = false;
+        }
+      });
+
+      function getPredictionQuery() {
+        let query = "";
+        query += "?city=" + encodeURIComponent(String(document.getElementById("city").value));
+        query += "&room_count=" + encodeURIComponent(String(document.getElementById("room_count").value));
+        query += "&floor=" + encodeURIComponent(String(document.getElementById("floor").value));
+        query += "&total_floors=" + encodeURIComponent(String(document.getElementById("total_floors").value));
+        query += "&area=" + encodeURIComponent(String(document.getElementById("area").value));
+        query += "&kitchen_area=" + encodeURIComponent(String(document.getElementById("kitchen_area").value));
+        query += "&living_area=" + encodeURIComponent(String(document.getElementById("living_area").value));
+        query += "&ceiling_height=" + encodeURIComponent(String(document.getElementById("ceiling_height").value));
+        query += "&repair_type=" + encodeURIComponent(String(document.getElementById("repair_type").value));
+        query += "&build_year=" + encodeURIComponent(String(document.getElementById("build_year").value));
+        query += "&heating_type=" + encodeURIComponent(String(document.getElementById("heating_type").value));
+        return query;
+      }
+    </script>
+  </body>
+</html>
